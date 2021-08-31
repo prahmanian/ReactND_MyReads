@@ -28,16 +28,10 @@ class Search extends React.Component {
 
     }
 
-    // componentDidMount() {
-    //     const bookshelvesBooks = this.props.books
-    //     console.log("search - mount", bookshelvesBooks)
-    //     this.setState({books: bookshelvesBooks})
-        
-    // }
 
     componentDidUpdate() {
         const bookshelvesBooks = this.props.books
-        console.log("search- update", bookshelvesBooks)
+        console.log("search - update", bookshelvesBooks)
         if (bookshelvesBooks!== this.state.books){
             this.setState({books: bookshelvesBooks})
         }
@@ -65,6 +59,15 @@ class Search extends React.Component {
                     this.setState({results: []})
                     return []
                 }
+
+                res.map((book) => {
+                    const match = this.state.books.filter(b => b.id === book.id)
+                    let matchShelf = 'none'
+                    match[0] ? matchShelf = match[0].shelf : matchShelf = 'none'
+                    book.shelf = matchShelf
+                    return book.shelf
+                })
+                
                 this.setState({results: res})
                 return res
             })

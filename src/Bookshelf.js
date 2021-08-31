@@ -19,7 +19,7 @@ class Bookshelf extends React.Component {
     
     componentDidMount() {
       const booksFromProps = this.props.books
-      console.log(`MOUNT ${this.props.title} - books`, booksFromProps)
+      // console.log(`MOUNT ${this.props.title} - books`, booksFromProps)
       if (booksFromProps!== this.state.books){
           this.setState({books: booksFromProps})
       }
@@ -29,7 +29,7 @@ class Bookshelf extends React.Component {
 
     componentDidUpdate() {
       const booksFromProps = this.props.books
-      console.log(`UPDATE ${this.props.title} - books`, booksFromProps)
+      // console.log(`UPDATE ${this.props.title} - books`, booksFromProps)
       if (booksFromProps!== this.state.books){
           this.setState({books: booksFromProps})
       }

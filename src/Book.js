@@ -33,6 +33,7 @@ class Book extends Component {
 
       // search results do not have a shelf value, so we need to set a value of 'none'
       const fixedShelf = shelf ? shelf : 'none'
+      console.log(title, 'shelf - ', fixedShelf)
 
   
   
@@ -63,6 +64,7 @@ class Book extends Component {
             
             {/* Not all books have authors, so we need to handle that edge case. */}
             {authors ? authors.map((author) => (<div className="book-authors" key={author}>{author}</div>)) : <div className="book-authors" >Anonymous</div> }
+            <div className="shelf">Shelf: {fixedShelf}</div>
           </div>
         </li>
         
