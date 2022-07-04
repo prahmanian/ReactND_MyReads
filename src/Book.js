@@ -17,6 +17,7 @@ class Book extends Component {
     //     return authors != null ? authors : "Anonymous"    
     // }
 
+    // not all search results have uniform image locations, we have a prioritized order of locations implemented below
     getImageLink = imageLinks => (
         imageLinks != null 
         ? imageLinks.thumbnail 
@@ -30,6 +31,13 @@ class Book extends Component {
       const {title, authors, imageLinks, shelf} = this.props.data
 
       const image = this.getImageLink(imageLinks)
+
+      const formattedShelf = {
+        wantToRead: "Want to Read",
+        read: "Read",
+        currentlyReading: "Currently Reading",
+        none: "None"
+      }
 
       // search results do not have a shelf value, so we need to set a value of 'none'
       const fixedShelf = shelf ? shelf : 'none'
@@ -50,21 +58,13 @@ class Book extends Component {
               
               </div>
               <ShelfChanger shelf={fixedShelf} handler={this.props.handler} book={this.props.data}/>
-              {/* <div className="book-shelf-changer">
-                <select value={shelf || 'none'} onChange={(e) => this.props.handler(this.props.data, e.target.value)}>
-                  <option value="move" disabled>Move to...</option>
-                  <option value="currentlyReading">Currently Reading</option>
-                  <option value="wantToRead">Want to Read</option>
-                  <option value="read">Read</option>
-                  <option value="none">None</option>
-                </select>
-              </div> */}
+              
             </div>
             <div className="book-title">{title}</div>
             
             {/* Not all books have authors, so we need to handle that edge case. */}
             {authors ? authors.map((author) => (<div className="book-authors" key={author}>{author}</div>)) : <div className="book-authors" >Anonymous</div> }
-            <div className="shelf">Shelf: {fixedShelf}</div>
+            <div className="shelf">Shelf: {formattedShelf[fixedShelf]}</div>
           </div>
         </li>
         
