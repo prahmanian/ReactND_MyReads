@@ -24,29 +24,13 @@ class APP extends React.Component {
   }
 
 
-  // handleUpdate = (book, shelf) => {
-
-  //     book.shelf = shelf
-
-  //     this.setState(
-  //       state => ({
-  //         books: state.books.filter(b => b.id !== book.id).concat(book)
-  //       })
-  //     )
-
-  //     BooksAPI.update(book, shelf) //persist change to Database
-  //     // console.log(this.state)
-
-
-  // } 
-
   handleUpdate = async (book, shelf) => {
     try {
-      const dbBook0 = await BooksAPI.get(book.id)
-      console.log(`got book from db... shelf: ${dbBook0.shelf}`)
-      console.log(`handle update: old shelf: ${book.shelf} -> new shelf: ${shelf} `)
+      // const dbBook0 = await BooksAPI.get(book.id)
+      // console.log(`got book from db... shelf: ${dbBook0.shelf}`)
+      // console.log(`handle update: old shelf: ${book.shelf} -> new shelf: ${shelf} `)
       book.shelf = shelf
-      console.log(`post update shelf: ${book.shelf}`)
+      // console.log(`post update shelf: ${book.shelf}`)
       this.setState(
         state => ({
           books: state.books.filter(b => b.id !== book.id).concat(book)
@@ -57,12 +41,11 @@ class APP extends React.Component {
       console.log(err)
     }
 
-    finally{
+    finally {
       await BooksAPI.update(book, shelf) //persist change to Database
-      const dbBook = await BooksAPI.get(book.id)
-      console.log(`got book from db... shelf: ${dbBook.shelf}`)
+      // const dbBook = await BooksAPI.get(book.id)
+      // console.log(`got book from db... shelf: ${dbBook.shelf}`)
       // console.log(this.state)
-
     }
     
 
